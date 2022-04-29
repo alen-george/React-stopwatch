@@ -5,7 +5,7 @@ import "./index.css";
 
 
 function Index() {
-  let interval = ""
+  let [interval,updateInterval] =useState("")
   const [timeTracker,updateTime] =useState({
           milliseconds: 0,
           seconds: 0,
@@ -45,17 +45,17 @@ const checkTimeUpdate = ()=>{
 }
 const handleStart=()=>{
 
-  clearTimeout(interval)
-
-  interval = setTimeout(startTimer,10)
+  clearInterval(interval)
+  // console.log(interval);
+  updateInterval(setInterval(startTimer,10))
 }
 const handlePause = ()=>{
 
-  clearTimeout(interval);
+  clearInterval(interval);
 }
 const handleReset=()=>{
 
-  clearTimeout(interval)
+  clearInterval(interval)
   updateTime({
     milliseconds: 0,
     seconds: 0,
@@ -141,7 +141,7 @@ export default Index
 //   };
 
 //   handlePause = () => {
-//     clearTimeout(this.interval);
+//     clearInterval(this.interval);
 //   };
 //   render() {
 //     return (
